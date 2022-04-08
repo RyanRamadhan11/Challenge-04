@@ -42,8 +42,9 @@ function onRequest(req, res) {
         res.writeHead(200, { "Content-Type": "application/javascript" });
         fileStream.pipe(res);
     } else {
-        res.writeHead(404, { "Content-Type": "text/html" });
-        res.end("No Page Found");
+        const html404 = fs.readFileSync("./public/404.html", "utf-8");
+        res.writeHead(200, {"Content-Type": "text/html"})
+        res.end(html404)
     }
 }
 
